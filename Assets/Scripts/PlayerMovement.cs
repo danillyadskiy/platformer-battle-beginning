@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public event Action Jumped;
+    
     private readonly float _jumpForce = 1000.0f;
     private readonly float _gravityScale = 5.0f;
     private readonly float _movementSpeed = 6.0f;
@@ -41,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     private void MoveY()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _rigidbody.velocity.y == 0)
+        {
             _rigidbody.AddForce(Vector2.up * _jumpForce);
+            Jumped?.Invoke();
+        }
     }
 }

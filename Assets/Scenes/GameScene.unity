@@ -5941,6 +5941,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2191955687059685953, guid: f0d56379a8735484887c9ee708dfd2fe, type: 3}
   m_PrefabInstance: {fileID: 287252727}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1813154238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4220580109836702704, guid: 4ce47c2a3be814e769b06c54ccdcfeb0, type: 3}
+  m_PrefabInstance: {fileID: 816057596416048723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1813154243 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5147718433113901557, guid: 4ce47c2a3be814e769b06c54ccdcfeb0, type: 3}
+  m_PrefabInstance: {fileID: 816057596416048723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1813154246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813154238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9c6daa568b748d99b5390835be5b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1813154243}
+  _attack: {fileID: 1813154247}
+--- !u!114 &1813154247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813154238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940545a3b4f334586a75f893ba0dbe50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827593726
 GameObject:
   m_ObjectHideFlags: 0
@@ -6574,7 +6610,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4220580109836702704, guid: 4ce47c2a3be814e769b06c54ccdcfeb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1813154247}
+    - targetCorrespondingSourceObject: {fileID: 4220580109836702704, guid: 4ce47c2a3be814e769b06c54ccdcfeb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1813154246}
   m_SourcePrefab: {fileID: 100100000, guid: 4ce47c2a3be814e769b06c54ccdcfeb0, type: 3}
 --- !u!1001 &8829680037919318833
 PrefabInstance:
