@@ -11,18 +11,8 @@ public class Player : MonoBehaviour
     {
         if (_isAlive)
         {
-            if (gameObject.TryGetComponent(out PlayerMovement playerMovement))
-                playerMovement.enabled = false;
-
-            if (gameObject.TryGetComponent(out CapsuleCollider2D capsuleCollider))
-                capsuleCollider.enabled = false;
-
-            if (gameObject.TryGetComponent(out Rigidbody2D rigidbody))
-                rigidbody.bodyType = RigidbodyType2D.Kinematic;
-            
-            Dead?.Invoke();
-
             _isAlive = false;
+            Dead?.Invoke();
         }
     }
 }

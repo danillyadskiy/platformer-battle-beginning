@@ -11,15 +11,8 @@ public class Enemy : MonoBehaviour
     {
         if (_isAlive)
         {
-            if (gameObject.TryGetComponent(out EnemyMovement enemyMovement))
-                enemyMovement.enabled = false;
-
-            if (gameObject.TryGetComponent(out CapsuleCollider2D capsuleCollider))
-                capsuleCollider.enabled = false;
-            
-            Dead?.Invoke();
-
             _isAlive = false;
+            Dead?.Invoke();
         }
     }
 }
