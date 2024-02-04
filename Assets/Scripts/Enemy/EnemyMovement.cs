@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private readonly float _movementSpeed = 1.0f;
+    private readonly float _movementSpeed = 1f;
+    private readonly float _minDistanceToPlayer = 2f;
     
     [SerializeField] private Transform _point1;
     [SerializeField] private Transform _point2;
@@ -52,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
     private void Follow(Player player)
     {
         ChangeDirection(player.transform);
-        ChangePosition(player.transform);
+        ChangePosition(player);
     }
 
     private void PatrolArea()
@@ -81,6 +82,16 @@ public class EnemyMovement : MonoBehaviour
             _targetPoint = _point1;
 
         ChangePosition(_targetPoint);
+    }
+
+    private void ChangePosition(Player player)
+    {
+        float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
+
+        if (distance > _minDistanceToPlayer)
+            ChangePosition(player.transform);
+        else
+            Direction = 0;
     }
     
     private void ChangePosition(Transform point)
