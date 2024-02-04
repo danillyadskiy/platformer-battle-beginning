@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -24,13 +23,47 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        ChangeDirection();
+        if (TryDetectPlayer(out Player player))
+            Follow(player);
+        else
+            PatrolArea();
+    }
+
+    private bool TryDetectPlayer(out Player player)
+    {
+        Vector2 origin = _point1.transform.position;
+        Vector2 direction = _point2.transform.position - _point1.transform.position;
+        
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction);
+        
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.TryGetComponent(out Player playerLocal))
+            {
+                player = playerLocal;
+                return true; 
+            }
+        }
+
+        player = null;
+        return false;
+    }
+
+    private void Follow(Player player)
+    {
+        ChangeDirection(player.transform);
+        ChangePosition(player.transform);
+    }
+
+    private void PatrolArea()
+    {
+        ChangeDirection(_targetPoint);
         ChangePosition();
     }
 
-    private void ChangeDirection()
+    private void ChangeDirection(Transform point)
     {
-        Direction = _targetPoint.transform.position.x - transform.position.x;
+        Direction = point.position.x - transform.position.x;
 
         if (Direction > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -46,9 +79,14 @@ public class EnemyMovement : MonoBehaviour
 
         else if (transform.position.x == _point2.position.x)
             _targetPoint = _point1;
-        
+
+        ChangePosition(_targetPoint);
+    }
+    
+    private void ChangePosition(Transform point)
+    {
         Vector2 newPosition = transform.position;
-        newPosition.x = Mathf.MoveTowards(newPosition.x, _targetPoint.position.x, Time.deltaTime * _movementSpeed);
+        newPosition.x = Mathf.MoveTowards(newPosition.x, point.position.x, Time.deltaTime * _movementSpeed);
         transform.position = newPosition;
     }
 }
