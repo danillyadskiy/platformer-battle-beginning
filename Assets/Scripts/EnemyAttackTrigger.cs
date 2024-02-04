@@ -6,7 +6,7 @@ public class EnemyAttackTrigger : MonoBehaviour
 {
     public event Action Entered;
 
-    private readonly float _coroutineWaitingTime = 2f;
+    private readonly float _coroutineWaitingTime = 1f;
     
     private IEnumerator _coroutine;
     private bool _isCoroutineWorking;
