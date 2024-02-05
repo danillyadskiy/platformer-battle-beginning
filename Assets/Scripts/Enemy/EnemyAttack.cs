@@ -29,7 +29,6 @@ public class EnemyAttack : MonoBehaviour
 
         if (TryGetPlayer(hits, out Player player))
             player.GetDamage();
-
     }
     
     private bool TryGetPlayer(IEnumerable<RaycastHit2D> hits, out Player player)

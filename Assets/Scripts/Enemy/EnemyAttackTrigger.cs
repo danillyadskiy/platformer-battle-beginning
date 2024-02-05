@@ -16,7 +16,7 @@ public class EnemyAttackTrigger : MonoBehaviour
         if (other.TryGetComponent(out Player player))
         {
             _isCoroutineWorking = true;
-            _coroutine = Coroutine();
+            _coroutine = Coroutine(player);
             StartCoroutine(_coroutine);
         }
     }
@@ -29,22 +29,19 @@ public class EnemyAttackTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator Coroutine()
+    private IEnumerator Coroutine(Player player)
     {
         yield return new WaitForSeconds(_coroutineWaitingTime);
 
-        while (true)
+        while (player.IsAlive)
         {
-            if (_isCoroutineWorking)
+            Entered?.Invoke();
+            
+            if (!_isCoroutineWorking)
             {
-                Entered?.Invoke();
-            }
-            else
-            {
-                Entered?.Invoke();
                 StopCoroutine(_coroutine);
             }
-            
+
             yield return new WaitForSeconds(_coroutineWaitingTime);
         }
     }

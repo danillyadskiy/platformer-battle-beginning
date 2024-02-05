@@ -5,8 +5,7 @@ public class PlayerMovementAnimation : MonoBehaviour
     private readonly int IsRun = Animator.StringToHash(nameof(IsRun));
     private readonly int IsFall = Animator.StringToHash(nameof(IsFall));
     private readonly int Jump = Animator.StringToHash(nameof(Jump));
-
-
+    
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerMovement _movement;
 

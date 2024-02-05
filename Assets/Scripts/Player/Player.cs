@@ -5,13 +5,18 @@ public class Player : MonoBehaviour
 {
     public event Action Dead;
 
-    private bool _isAlive = true;
-    
+    public bool IsAlive { get; private set; }
+
+    private void Start()
+    {
+        IsAlive = true;
+    }
+
     public void GetDamage()
     {
-        if (_isAlive)
+        if (IsAlive)
         {
-            _isAlive = false;
+            IsAlive = false;
             Dead?.Invoke();
         }
     }
