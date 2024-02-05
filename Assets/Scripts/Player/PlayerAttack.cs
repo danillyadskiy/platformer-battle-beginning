@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     public event Action Hit;
     
     private readonly RaycastHelper _raycastHelper = new RaycastHelper();
+    private readonly int _damage = 20;
     
     [SerializeField] private Collider2D _collider;
 
@@ -31,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out Enemy enemy))
             {
-                enemy.GetDamage();
+                enemy.GetDamage(_damage);
             }
         }
     }

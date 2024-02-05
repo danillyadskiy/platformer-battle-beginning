@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public event Action Hit;
-    
+
     private readonly RaycastHelper _raycastHelper = new RaycastHelper();
+    private readonly int _damage = 20;
     
     [SerializeField] private Collider2D _collider;
     [SerializeField] private EnemyAttackTrigger _trigger;
@@ -28,7 +29,7 @@ public class EnemyAttack : MonoBehaviour
         IEnumerable<RaycastHit2D> hits = _raycastHelper.GetHits(transform, _collider);
 
         if (TryGetPlayer(hits, out Player player))
-            player.GetDamage();
+            player.GetDamage(_damage);
     }
     
     private bool TryGetPlayer(IEnumerable<RaycastHit2D> hits, out Player player)

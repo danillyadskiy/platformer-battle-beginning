@@ -9,14 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private readonly float _gravityScale = 5.0f;
     private readonly float _movementSpeed = 6.0f;
     
-    [SerializeField] private Rigidbody2D _rigidbody;
+    [field: SerializeField] public Rigidbody2D Rigidbody { get; private set; }
     
-    public Rigidbody2D Rigidbody => _rigidbody;
     public float Direction { get; private set; }
 
     private void Start()
     {
-        _rigidbody.gravityScale = _gravityScale;
+        Rigidbody.gravityScale = _gravityScale;
     }
 
     private void Update()
@@ -37,15 +36,13 @@ public class PlayerMovement : MonoBehaviour
         
         float distance = Mathf.Abs(Direction) * _movementSpeed * Time.deltaTime;
         transform.Translate(Vector2.right * distance);
-
-        
     }
 
     private void MoveY()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _rigidbody.velocity.y == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && Rigidbody.velocity.y == 0)
         {
-            _rigidbody.AddForce(Vector2.up * _jumpForce);
+            Rigidbody.AddForce(Vector2.up * _jumpForce);
             Jumped?.Invoke();
         }
     }
